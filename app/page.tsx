@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex main-h-screen items-center justify-center bg-background">
+    <div className="flex min-h-screen items-center justify-center bg-background">
       <div className="w-full max-w-md space-y-6 p-6">
         <div className="text-center space-y-2">
           <h1 className="text-3xl font-bold">Better Auth Tutorial</h1>
