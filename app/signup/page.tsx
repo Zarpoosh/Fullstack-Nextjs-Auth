@@ -15,9 +15,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import  Link  from "next/link";
 
-function Login() {
+function SignUpPage() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [passwird, setPassword] = useState("");
+  const [confirmpassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState("");
   const handelSubmit = () => {};
@@ -25,8 +27,8 @@ function Login() {
     <div className="flex min-h-screen items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>Sign in</CardTitle>
-          <CardDescription>log in to you'r acount</CardDescription>
+          <CardTitle>Sign UP</CardTitle>
+          <CardDescription>Create a new acount to get started</CardDescription>
           <CardAction>Card Action</CardAction>
         </CardHeader>
         <CardContent>
@@ -53,36 +55,40 @@ function Login() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
+            <div>
+              <Label htmlFor="confirmPassword">confirmPassword</Label>
+              <Input
+                id="confirmPassword"
+                type="password"
+                placeholder="**********"
+                required
+                // value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+            </div>
             {error && (
               <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
                 {error}
               </div>
             )}
             <Button
-             className="w-full" 
-            //  disabled={loading} 
-             type="submit">
-              {loading ? "Loading is in ...." : "Login"}
+              className="w-full"
+              //  disabled={loading}
+              type="submit"
+            >
+              {loading ? "Loading is in ...." : "Sign Up"}
             </Button>
           </form>
         </CardContent>
         <div className="md-4 space-x-2 text-center text-sm">
-          <Link
-            href="/forget-password"
-            className=" text-primary hover:underline"
-          >
-            Forget you'r password?
+          already have an acount?{""}
+          <Link href="/login" className="text-primary hover:underline">
+            login
           </Link>
-          <div>
-            Don&apos;t have an acount?{""}
-            <Link href="/signup" className="text-primary hover:underline">
-              signup
-            </Link>
-          </div>
         </div>
       </Card>
     </div>
   );
 }
 
-export default Login;
+export default SignUpPage;

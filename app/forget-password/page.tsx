@@ -15,18 +15,18 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import  Link  from "next/link";
 
-function Login() {
-  const [email, setEmail] = useState("");
+function ForgotPasswordPage() {
   const [passwird, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
   const handelSubmit = () => {};
   return (
     <div className="flex min-h-screen items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>Sign in</CardTitle>
-          <CardDescription>log in to you'r acount</CardDescription>
+          <CardTitle>Forgot Password</CardTitle>
+          <CardDescription>enter you'r email to receive you'r password reset link</CardDescription>
           <CardAction>Card Action</CardAction>
         </CardHeader>
         <CardContent>
@@ -38,21 +38,11 @@ function Login() {
                 type="email"
                 placeholder="yahoo@gmail.com"
                 required
-                value={email}
+                // value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div>
-              <Label htmlFor="password">password</Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="**********"
-                required
-                // value={Password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-            </div>
+            
             {error && (
               <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
                 {error}
@@ -62,27 +52,24 @@ function Login() {
              className="w-full" 
             //  disabled={loading} 
              type="submit">
-              {loading ? "Loading is in ...." : "Login"}
+              {loading ? "Loading is in ...." : "Send Reset Link"}
+            </Button>
+
+            <Button
+            asChild
+            variant={"outline"}
+             className="w-full bg-transparent" 
+            //  disabled={loading} 
+             type="submit">
+              <Link href="/login">Back to Login</Link>
             </Button>
           </form>
         </CardContent>
-        <div className="md-4 space-x-2 text-center text-sm">
-          <Link
-            href="/forget-password"
-            className=" text-primary hover:underline"
-          >
-            Forget you'r password?
-          </Link>
-          <div>
-            Don&apos;t have an acount?{""}
-            <Link href="/signup" className="text-primary hover:underline">
-              signup
-            </Link>
-          </div>
-        </div>
+
+
       </Card>
     </div>
   );
 }
 
-export default Login;
+export default ForgotPasswordPage;
