@@ -13,16 +13,33 @@ import {
 import { Label } from "@radix-ui/react-label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import  Link  from "next/link";
+import Link from "next/link";
+import { signUp } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 function SignUpPage() {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [passwird, setPassword] = useState("");
+  const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState("");
-  const handelSubmit = () => {};
+  const handelSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const result = await signUp.email({
+        email,
+        name,
+        password,
+      });
+      if (result.error) {
+        setError(result.error.message || " Sgin up Faield");
+      } else {
+        router.push("./dashboard");
+      }
+    } catch (error) {}
+  };
   return (
     <div className="flex min-h-screen items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md">
@@ -42,6 +59,17 @@ function SignUpPage() {
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div>
+              <Label htmlFor="name">Name</Label>
+              <Input
+                id="name"
+                type="text"
+                placeholder="enter your name"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
             <div>

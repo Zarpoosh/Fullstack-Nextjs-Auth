@@ -13,11 +13,12 @@ import {
 import { Label } from "@radix-ui/react-label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import  Link  from "next/link";
+import Link from "next/link";
 
 function ForgotPasswordPage() {
   const [passwird, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [email, setEmail] = useState("");
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
   const handelSubmit = () => {};
@@ -26,7 +27,9 @@ function ForgotPasswordPage() {
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle>Forgot Password</CardTitle>
-          <CardDescription>enter you'r email to receive you'r password reset link</CardDescription>
+          <CardDescription>
+            enter you'r email to receive you'r password reset link
+          </CardDescription>
           <CardAction>Card Action</CardAction>
         </CardHeader>
         <CardContent>
@@ -42,31 +45,31 @@ function ForgotPasswordPage() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            
+
             {error && (
               <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">
                 {error}
               </div>
             )}
             <Button
-             className="w-full" 
-            //  disabled={loading} 
-             type="submit">
+              className="w-full"
+              //  disabled={loading}
+              type="submit"
+            >
               {loading ? "Loading is in ...." : "Send Reset Link"}
             </Button>
 
             <Button
-            asChild
-            variant={"outline"}
-             className="w-full bg-transparent" 
-            //  disabled={loading} 
-             type="submit">
+              asChild
+              variant={"outline"}
+              className="w-full bg-transparent"
+              //  disabled={loading}
+              type="submit"
+            >
               <Link href="/login">Back to Login</Link>
             </Button>
           </form>
         </CardContent>
-
-
       </Card>
     </div>
   );
