@@ -14,13 +14,41 @@ import { Label } from "@radix-ui/react-label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import  Link  from "next/link";
+import { signIn } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 function Login() {
   const [email, setEmail] = useState("");
-  const [passwird, setPassword] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState("");
-  const handelSubmit = () => {};
+  const [loading, setLoading] = useState(false);
+  const router= useRouter();
+  
+  const handelSubmit = async (e: React.FormEvent) => {
+     e.preventDefault();
+     setError("");
+ 
+ 
+     setLoading(true);
+ 
+     try {
+       const result = await signIn.email({
+         email,
+         password,
+       });
+       if (result.error) {
+         setError(result.error.message || " Sgin in Faield");
+       } else {
+         router.push("./dashboard");
+       }
+     } catch (err) {
+       setError(" An error occured during sign in");
+       console.log(err);
+ 
+     } finally {
+       setLoading(false);
+     }
+     }
   return (
     <div className="flex min-h-screen items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md">

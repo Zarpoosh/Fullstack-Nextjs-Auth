@@ -24,9 +24,22 @@ function SignUpPage() {
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState("");
+  const [loading, setLoading] = useState(false);
   const handelSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
+
+    if (password !== confirmpassword){
+      setError("password do not match")
+      return;
+    }
+    if (password.length <8) {
+      setError("password must be least 8 characters");
+      return;
+    }
+
+    setLoading(true);
+
     try {
       const result = await signUp.email({
         email,
@@ -38,8 +51,15 @@ function SignUpPage() {
       } else {
         router.push("./dashboard");
       }
-    } catch (error) {}
-  };
+    } catch (err) {
+      setError(" An error occured during sign up");
+      console.log(err);
+
+    } finally {
+      setLoading(false);
+    }
+    }
+ 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background p-4">
       <Card className="w-full max-w-md">
@@ -57,7 +77,7 @@ function SignUpPage() {
                 type="email"
                 placeholder="yahoo@gmail.com"
                 required
-                value={email}
+                // value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
