@@ -8,7 +8,10 @@ export const auth = betterAuth({
   database: prismaAdapter(prisma, {
     provider: "postgresql", // یا mysql, sqlite, ...
   }),
-  emailAndPassword: { 
-    enabled: true, 
-  }, 
+  emailAndPassword: {
+    enabled: true,
+    sendResetPassword: async ({ user, url }) => {
+      console.log("Reset password url", user.email, ":", url);
+    },
+  },
 });
