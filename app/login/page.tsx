@@ -98,10 +98,10 @@ function Login() {
             href="/forget-password"
             className=" text-primary hover:underline"
           >
-            Forget you&#39;r password?
+            Forget your password?
           </Link>
           <div>
-            Don&#39;t have an acount?{""}
+            Dont have an acount?{""}
             <Link href="/signup" className="text-primary hover:underline">
               signup
             </Link>
