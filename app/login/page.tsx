@@ -99,7 +99,7 @@ function Login() {
             href="/forget-password"
             className=" text-primary hover:underline"
           >
-            Forget you'r password?
+            Forget you&apos;r password?
           </Link>
           <div>
             Don&apos;t have an acount?{""}

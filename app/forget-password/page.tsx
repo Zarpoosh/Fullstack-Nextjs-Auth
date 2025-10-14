@@ -50,7 +50,7 @@ function ForgotPasswordPage() {
         <CardHeader>
           <CardTitle>Forgot Password</CardTitle>
           <CardDescription>
-            enter you'r email to receive you'r password reset link
+            enter you&apos;r email to receive you&apos;r password reset link
           </CardDescription>
           <CardAction>Card Action</CardAction>
         </CardHeader>

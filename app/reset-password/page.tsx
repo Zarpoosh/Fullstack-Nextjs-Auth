@@ -92,7 +92,7 @@ function ResetPasswordPage() {
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle>Reset Password</CardTitle>
-          <CardDescription>Enter you'r new password</CardDescription>
+          <CardDescription>Enter you&apos;r new password</CardDescription>
           <CardAction>Card Action</CardAction>
         </CardHeader>
         <CardContent>
